@@ -61,3 +61,17 @@ JavaScript는 동적 해석형 언어이면서 약형 프로그래밍 언어이�
 
 1. if문 사용
    간단한 계산기를 만든 곳에 코드들을 리팩토링하여 재사용이 가능한 코드로 바꾸었다.
+
+2. 객체와 배열을 등식으로 비교할 때 주의점
+   EX)
+   ```
+   const person1 = {name: 'Max'};
+   const person2 = {name: 'Max'};
+   person1 === person2
+   false
+   const person3 = person1
+   person === person1
+   true
+   person1.name === person2.name
+   true
+   ```
