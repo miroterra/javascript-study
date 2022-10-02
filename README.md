@@ -68,10 +68,10 @@ JavaScript는 동적 해석형 언어이면서 약형 프로그래밍 언어이�
    const person1 = {name: 'Max'};
    const person2 = {name: 'Max'};
    person1 === person2
-   false
+   = false
    const person3 = person1
    person === person1
-   true
+   = true
    person1.name === person2.name
-   true
+   = true
    ```
