@@ -27,6 +27,14 @@ function writeToLog(operationIdentifier, prevResult, operationNumber, newResult)
 
 /** 각각의 연산자에 대한 결과값을 호출하는 함수 */
 function calculateResult(calculationType) {
+  // 조건 검사
+  if (
+    (calculationType !== 'ADD' && calculationType !== 'SUBTRACT' && calculationType !== 'MULTIPLY' && calculationType !== 'DEVIDE') ||
+    !enteredNumber
+  ) {
+    return;
+  }
+
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
   let mathOperator;
