@@ -5,17 +5,32 @@ const STRONG_ATTACK_VALUE = 17;
 /** 플레이어의 회복 최댓값 */
 const HEAL_VALUE = 20;
 
+/** 체력 설정 */
+const enteredValue = prompt('Maximum life for you and the monster.', '100');
+
 /** 몬스터의 데미지 최댓값 */
 const MONSTER_ATTACK_VALUE = 14;
 
 /** 기본 체력 */
-let chosenMaxLife = 100;
+let chosenMaxLife = parseInt(enteredValue);
+
+// 사용자가 기본 체력을 숫자가 아니거나 음수 등을 설정한 경우
+if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+  chosenMaxLife = 100;
+}
 
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
+
+/** 게임 재 실행 */
+function reset() {
+  currentMonsterHealth = chosenMaxLife;
+  currentPlayerHealth = chosenMaxLife;
+  resetGame(chosenMaxLife);
+}
 
 /** 매 라운드마다 실행될 함수 */
 function endRound() {
@@ -33,10 +48,16 @@ function endRound() {
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
     // 게임의 승패조건
     alert('You won!');
+    hasBonusLife = true;
+    reset();
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
     alert('You lost!');
+    hasBonusLife = true;
+    reset();
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
     alert('You have a draw');
+    hasBonusLife = true;
+    reset();
   }
 }
 
@@ -45,7 +66,7 @@ function attackMonster(mode) {
   let maxDamage;
   if (mode === 'ATTACK') {
     maxDamage = ATTACK_VALUE;
-  } else if (mode === 'STORNG_ATTACK') {
+  } else if (mode === 'STRONG_ATTACK') {
     maxDamage = STRONG_ATTACK_VALUE;
   }
 
