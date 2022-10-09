@@ -213,11 +213,30 @@ function printLogHandler() {
   for (let i = 0; i < 3; i++) {
     console.log('-----------');
   }
-  for (let i = 10; i > 0; ) {
-    i--;
-    console.log(i);
+  // for (let i = 10; i > 0; ) {
+  //   i--;
+  //   console.log(i);
+  // }
+
+  // for 반복문
+  // for (let i = 0; i < battleLog.length; i++) {
+  //   console.log(battleLog[i]);
+  // }
+
+  // for of 반복문
+  for (const logEntry of battleLog) {
+    console.log(logEntry);
   }
-  console.log(battleLog);
+
+  // for in 객체의 키-값을 다루기 위한 반복문
+  let i = 0;
+  for (const logEntry of battleLog) {
+    console.log(`#${i}`);
+    for (const key in logEntry) {
+      console.log(`${key} => ${logEntry[key]}`);
+    }
+    i++;
+  }
 }
 
 attackBtn.addEventListener('click', attackHandler);
