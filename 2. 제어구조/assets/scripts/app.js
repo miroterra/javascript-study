@@ -213,6 +213,13 @@ function printLogHandler() {
   for (let i = 0; i < 3; i++) {
     console.log('-----------');
   }
+
+  // do while 반복문
+  let j = 3;
+  do {
+    console.log(j);
+    j++;
+  } while (j < 3);
   // for (let i = 10; i > 0; ) {
   //   i--;
   //   console.log(i);
