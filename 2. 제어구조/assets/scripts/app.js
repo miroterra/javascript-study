@@ -31,6 +31,8 @@ let hasBonusLife = true;
 /** 로그를 담을 빈 배열 */
 let battleLog = [];
 
+let lastLoggedEntry;
+
 // 사용자가 기본 체력을 숫자가 아니거나 음수 등을 설정한 경우
 if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
   chosenMaxLife = 100;
@@ -238,9 +240,13 @@ function printLogHandler() {
   // for in 객체의 키-값을 다루기 위한 반복문
   let i = 0;
   for (const logEntry of battleLog) {
-    console.log(`#${i}`);
-    for (const key in logEntry) {
-      console.log(`${key} => ${logEntry[key]}`);
+    if ((!lastLoggedEntry && lastLoggedEntry !== 0) || lastLoggedEntry < i) {
+      console.log(`#${i}`);
+      for (const key in logEntry) {
+        console.log(`${key} => ${logEntry[key]}`);
+      }
+      lastLoggedEntry = i;
+      break;
     }
     i++;
   }
