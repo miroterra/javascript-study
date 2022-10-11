@@ -14,29 +14,41 @@ const LOG_EVENT_MONSTER_ATTACK = 'MONSTER_ATTACK';
 const LOG_EVENT_PLAYER_HEAL = 'PLAYER_HEAL';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
-/** 체력 설정 */
-const enteredValue = prompt('Maximum life for you and the monster.', '100');
-
 /** 몬스터의 데미지 최댓값 */
 const MONSTER_ATTACK_VALUE = 14;
-
-/** 기본 체력 */
-let chosenMaxLife = parseInt(enteredValue);
-
-let currentMonsterHealth = chosenMaxLife;
-let currentPlayerHealth = chosenMaxLife;
-
-let hasBonusLife = true;
 
 /** 로그를 담을 빈 배열 */
 let battleLog = [];
 
 let lastLoggedEntry;
 
-// 사용자가 기본 체력을 숫자가 아니거나 음수 등을 설정한 경우
-if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
-  chosenMaxLife = 100;
+function getMaxLifeValues() {
+  /** 체력 설정 */
+  const enteredValue = prompt('Maximum life for you and the monster.', '100');
+
+  /** 기본 체력 */
+  const parsedValue = parseInt(enteredValue);
+
+  // 사용자가 기본 체력을 숫자가 아니거나 음수 등을 설정한 경우
+  if (isNaN(parsedValue) || parsedValue <= 0) {
+    throw { massage: 'Invalid user input, not a number' };
+  }
+  return parsedValue;
 }
+let chosenMaxLife;
+
+try {
+  chosenMaxLife = getMaxLifeValues();
+} catch (error) {
+  console.log(error);
+  chosenMaxLife = 100;
+  alert('You entered something wrong, default value of 100 was used');
+  // throw error;
+}
+
+let currentMonsterHealth = chosenMaxLife;
+let currentPlayerHealth = chosenMaxLife;
+let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
 
