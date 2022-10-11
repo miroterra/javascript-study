@@ -218,8 +218,15 @@ function printLogHandler() {
 
   // do while 반복문
   let j = 3;
-  do {
+  outerWhile: do {
     console.log(j);
+    innerFor: for (let k = 0; k < 5; k++) {
+      if (k === 3) {
+        // break outerWhile;
+        continue outerWhile; // 무한루프
+      }
+      console.log('Inner', k);
+    }
     j++;
   } while (j < 3);
   // for (let i = 10; i > 0; ) {
