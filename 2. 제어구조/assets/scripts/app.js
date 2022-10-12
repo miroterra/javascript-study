@@ -235,7 +235,7 @@ function printLogHandler() {
     innerFor: for (let k = 0; k < 5; k++) {
       if (k === 3) {
         // break outerWhile;
-        continue outerWhile; // 무한루프
+        // continue outerWhile; // 무한루프
       }
       console.log('Inner', k);
     }
