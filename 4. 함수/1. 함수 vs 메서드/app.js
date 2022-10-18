@@ -16,5 +16,8 @@ function startGame() {
 
 // person.greet();
 
+// 함수는 객체이다
+console.dir(startGame);
+
 // 즉 addEventListener는 startGameBtn 객체의 메서드다
 startGameBtn.addEventListener('click', startGame);
