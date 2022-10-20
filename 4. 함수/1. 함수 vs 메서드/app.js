@@ -1,8 +1,8 @@
 const startGameBtn = document.getElementById('start-game-btn');
 
-function startGame() {
+const start = function () {
   console.log('Game is starting...');
-}
+};
 
 // const person = {
 //   // name이 프로퍼티
@@ -20,4 +20,4 @@ function startGame() {
 console.dir(startGame);
 
 // 즉 addEventListener는 startGameBtn 객체의 메서드다
-startGameBtn.addEventListener('click', startGame);
+startGameBtn.addEventListener('click', start);
