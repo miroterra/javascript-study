@@ -76,3 +76,28 @@ startGameBtn.addEventListener('click', () => {
   alert(message);
   gameIsRunning = false;
 });
+
+// not related to game
+
+// Rest 연산자
+
+const sumUp = (a, b, ...numbers) => {
+  let sum = 0;
+  for (const num of numbers) {
+    sum += num;
+  }
+  return sum;
+};
+
+// function 키워드를 쓸때만 사용 가능한 arguments는 배열과 비슷한 객체를 제공, 실제 배열은 아님
+// ES6에 Rest 연산자가 도입되기 이전에 사용, 현재는 Rest 연산자를 쓰자
+const subtractUp = function () {
+  let sum = 0;
+  for (const num of arguments) {
+    sum += num;
+  }
+  return sum;
+};
+
+console.log(sumUp(1, 10, -15, 20));
+console.log(subtractUp(10, 20, 15, -16, -20));
