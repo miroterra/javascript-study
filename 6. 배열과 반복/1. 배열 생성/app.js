@@ -36,18 +36,44 @@
 // }
 
 // 배열의 전체를 이동하는 shift/unshift 보다 push/pop이 빠르다.
-const hobbies = ['Sports', 'Cooking'];
+// const hobbies = ['Sports', 'Cooking'];
 
-// 배열의 마지막부분에 추가
-hobbies.push('Reading');
+// // 배열의 마지막부분에 추가
+// hobbies.push('Reading');
 
-// 배열의 첫 부분에 추가 -> 배열의 모든 요소를 오른쪽으로 이동
-hobbies.unshift('Coding');
+// // 배열의 첫 부분에 추가 -> 배열의 모든 요소를 오른쪽으로 이동
+// hobbies.unshift('Coding');
 
-// 배열의 마지막 요소 삭제하고 삭제된 요소를 스트링으로 반환
-const poppedValue = hobbies.pop();
+// // 배열의 마지막 요소 삭제하고 삭제된 요소를 스트링으로 반환
+// const poppedValue = hobbies.pop();
 
-//배열의 첫번째 부분 삭제 -> 이는 배열의 모든 요소를 왼쪽으로 한자리 이동한다. 따라서 첫번째 부분은 삭제가 되는 것
-hobbies.shift();
+// //배열의 첫번째 부분 삭제 -> 이는 배열의 모든 요소를 왼쪽으로 한자리 이동한다. 따라서 첫번째 부분은 삭제가 되는 것
+// hobbies.shift();
 
-console.log(hobbies);
+// console.log(hobbies);
+
+// // 두 요소 사이에 요소를 추가하는 것, 삭제한 것을 반환한다.
+// // 첫번째 인자는 들어갈 인덱스 번호, 음수로 입력하면 오른쪽에서 부터 시작한다.
+// // 두번째 인자는 제거할 요소의 수
+// // 세번째 인자는 배열에 추가할 요소
+// hobbies.splice(1, 0, 'Good Food');
+// console.log(hobbies);
+
+// const removedElement = hobbies.splice(-2, 1);
+// console.log(hobbies);
+
+// 배열은 참조값이다
+// slice는 원본을 대체하지않고 배열에 복사본을 반환한다.
+const testResults = [1, 5.3, 1.5, 10.55, -1, 10];
+
+// 첫번째 인자는 시작하는 부분 , 두번째 인자는 끝부분인데 포함되지않음 따라서 인덱스 0,1 이 복사가 된다.
+// 단일 인자로 단일 인덱스를 가져올수도 있다.
+// const storedResults = testResults.slice(0, 2);
+
+// concat은 배열을 취하여 이 배열을 서로 연결한다. 중첩배열로 추가하는 것은 아님
+// 배열의 모든 요소를 기본 배열에 새로운 요소로 추가하여 새로운 배열을 반환한다.
+const storedResults = testResults.concat([3.77, 2]);
+
+testResults.push(4);
+
+console.log(storedResults, testResults);
