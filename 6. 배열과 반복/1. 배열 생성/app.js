@@ -77,3 +77,27 @@ const storedResults = testResults.concat([3.77, 2]);
 testResults.push(4);
 
 console.log(storedResults, testResults);
+
+// 원시값에 관해서 실행되지만 참조 값에 대해서는 실행되지않는다 -> -1을 반환한다.
+// 배열의 해당 요소의 인덱스를 찾을 수 있는 indexOf, 중복 값이 있어도 첫번째로 나오는 값만 나온다.
+console.log(testResults.indexOf(1.5));
+// 배열의 끝에서 부터 찾기
+console.log(testResults.lastindexOf(1.5));
+
+const personData = [{ name: 'Max' }, { name: 'Manuel' }];
+console.log(personData.indexOf({ name: 'Manuel' }));
+
+// 다른 함수를 취하는 find, 찾은 값을 복사하는것이 아니므로 값을 수정하면 전체가 바뀐다.
+// 함수는 최대 3개의 인수를 취한다.
+// 첫번째는 인자는 배열의 단일 객체, 두번째 인수는 해당 단일 요소의 인덱스, 세번째 인수는 전체 배열
+// 찾으려는 요소에 관해서는 true, 나머지는 false를 반환
+const manuel = personData.find((person, idx, persons) => {
+  return person.name === 'Manuel';
+});
+
+manuel.name = 'Anna';
+
+console.log(manuel, personData);
+
+// find와 같지만 인덱스값을 반환한다.
+const maxIndex = personData.findIndex();
