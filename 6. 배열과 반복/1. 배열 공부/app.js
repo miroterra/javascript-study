@@ -156,6 +156,19 @@ console.log(sortedPrices);
 // });
 
 // arrow function 으로 더 짧게 줄일 수 있다. 사용하지 않는 매개변수, 괄호, 리턴등을 뺄수 있다.
-const filteredArray = prices.filter(price => price > 6);
+const filteredArray = prices.filter((price) => price > 6);
 
 console.log(filteredArray);
+
+// let sum = 0;
+
+// price.forEach((price) => {
+//   sum += pirce;
+// });
+// console.log(sum);
+
+// prevValue는 여기서 설정한 초깃값, 설정되어 있지 않으면 undifined
+// curVlaue는 배열의 첫 번째 요소
+const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
+
+console.log(sum);
