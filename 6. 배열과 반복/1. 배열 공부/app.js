@@ -156,7 +156,7 @@ console.log(sortedPrices);
 // });
 
 // arrow function 으로 더 짧게 줄일 수 있다. 사용하지 않는 매개변수, 괄호, 리턴등을 뺄수 있다.
-const filteredArray = prices.filter((price) => price > 6);
+const filteredArray = prices.filter(price => price > 6);
 
 console.log(filteredArray);
 
@@ -172,3 +172,38 @@ console.log(filteredArray);
 const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
 
 console.log(sum);
+
+// 문자열을 나눠 배열로 변환 하는 split
+const data = 'new york;10.99;2000';
+
+const transformedData = data.split(';');
+// 10.99가 문자열로 되기 때문에 숫자로 변환
+transformedData[1] = +transformedData[1];
+console.log(transformedData);
+
+// 배열나눠 문자열로 변환하는 join
+const nameFragments = ['Max', 'Schwarz'];
+const name = nameFragments.join(' ');
+console.log(name);
+
+// 스프레드 연산자
+// 스프레드 연산자를 쓰면 배열의 모든 요소를 꺼내오게 된다.
+const copiedNameFragments = [...nameFragments];
+nameFragments.push('Mr');
+console.log(nameFragments, copiedNameFragments);
+// 개별 값의 리스트를 요구하는 함수나 메서드에 사용하기 좋다.
+console.log(Math.min(...prices));
+
+const persons = [
+  { name: 'Max', age: 30 },
+  { name: 'Manuel', age: 31 },
+];
+const copiedPersons = persons.map(person => ({
+  name: person.name,
+  age: person.age,
+}));
+
+persons.push({ name: 'Anna', age: 29 });
+persons[0].age = 31;
+
+console.log(persons, copiedPersons);
