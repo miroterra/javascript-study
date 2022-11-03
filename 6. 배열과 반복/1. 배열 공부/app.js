@@ -122,33 +122,33 @@
 
 // console.log(taxAdjustPrices);
 
-const prices = [10.99, 5.99, 3.99, 6.59];
-const tax = 0.19;
+// const prices = [10.99, 5.99, 3.99, 6.59];
+// const tax = 0.19;
 
 // 배열의 값을 재정의 하여 신규 배열을 만들어 반환하는 map (변환)
-const taxAdjustedPrices = prices.map((price, idx, prices) => {
-  const priceObj = { index: idx, taxAdjustPrices: price * (1 + tax) };
-  return priceObj;
-});
+// const taxAdjustedPrices = prices.map((price, idx, prices) => {
+//   const priceObj = { index: idx, taxAdjustPrices: price * (1 + tax) };
+//   return priceObj;
+// });
 
 // console.log(prices, taxAdjustedPrices);
 
 // 배열 정렬
 // 문자열 논리로 정렬하는 sort -> 숫자의 경우 맨 앞자리만을 보고 정렬
 // 따라서 숫자 논리로 만들어서 사용 가능
-const sortedPrices = prices.sort((a, b) => {
-  if (a > b) {
-    return -1;
-  } else if (a === b) {
-    return 0;
-  } else {
-    return 1;
-  }
-});
+// const sortedPrices = prices.sort((a, b) => {
+//   if (a > b) {
+//     return -1;
+//   } else if (a === b) {
+//     return 0;
+//   } else {
+//     return 1;
+//   }
+// });
 // 정렬된 것을 역으로 바꾸는 reverse,
 // 오름차 내림차를 잘 사용하여 reverse를 사용하지 않는것이 좋음
 // console.log(sortedPrices.reverse());
-console.log(sortedPrices);
+// console.log(sortedPrices);
 
 // filter 는 true, false 값을 반환하고 false값은 삭제하여 새로운 배열을 생성
 // const filteredArray = prices.filter((price, index, pirces) => {
@@ -156,9 +156,9 @@ console.log(sortedPrices);
 // });
 
 // arrow function 으로 더 짧게 줄일 수 있다. 사용하지 않는 매개변수, 괄호, 리턴등을 뺄수 있다.
-const filteredArray = prices.filter(price => price > 6);
+// const filteredArray = prices.filter(price => price > 6);
 
-console.log(filteredArray);
+// console.log(filteredArray);
 
 // let sum = 0;
 
@@ -169,41 +169,48 @@ console.log(filteredArray);
 
 // prevValue는 여기서 설정한 초깃값, 설정되어 있지 않으면 undifined
 // curVlaue는 배열의 첫 번째 요소
-const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
+// const sum = prices.reduce((prevValue, curValue) => prevValue + curValue, 0);
 
-console.log(sum);
+// console.log(sum);
 
 // 문자열을 나눠 배열로 변환 하는 split
-const data = 'new york;10.99;2000';
+// const data = 'new york;10.99;2000';
 
-const transformedData = data.split(';');
+// const transformedData = data.split(';');
 // 10.99가 문자열로 되기 때문에 숫자로 변환
-transformedData[1] = +transformedData[1];
-console.log(transformedData);
+// transformedData[1] = +transformedData[1];
+// console.log(transformedData);
 
 // 배열나눠 문자열로 변환하는 join
-const nameFragments = ['Max', 'Schwarz'];
-const name = nameFragments.join(' ');
-console.log(name);
+// const nameFragments = ['Max', 'Schwarz'];
+// const name = nameFragments.join(' ');
+// console.log(name);
 
 // 스프레드 연산자
 // 스프레드 연산자를 쓰면 배열의 모든 요소를 꺼내오게 된다.
-const copiedNameFragments = [...nameFragments];
-nameFragments.push('Mr');
-console.log(nameFragments, copiedNameFragments);
+// const copiedNameFragments = [...nameFragments];
+// nameFragments.push('Mr');
+// console.log(nameFragments, copiedNameFragments);
 // 개별 값의 리스트를 요구하는 함수나 메서드에 사용하기 좋다.
-console.log(Math.min(...prices));
+// console.log(Math.min(...prices));
 
-const persons = [
-  { name: 'Max', age: 30 },
-  { name: 'Manuel', age: 31 },
-];
-const copiedPersons = persons.map(person => ({
-  name: person.name,
-  age: person.age,
-}));
+// const persons = [
+//   { name: 'Max', age: 30 },
+//   { name: 'Manuel', age: 31 },
+// ];
+// const copiedPersons = persons.map(person => ({
+//   name: person.name,
+//   age: person.age,
+// }));
 
-persons.push({ name: 'Anna', age: 29 });
-persons[0].age = 31;
+// persons.push({ name: 'Anna', age: 29 });
+// persons[0].age = 31;
 
-console.log(persons, copiedPersons);
+// console.log(persons, copiedPersons);
+
+const nameData = ['Max', 'Schwarz', 'Mr', 30];
+// const firstName = nameData[0];
+// const lastName = nameData[1];
+
+const [firstName, lastName, ...otherInformation] = nameData;
+console.log(firstName, lastName, otherInformation);
