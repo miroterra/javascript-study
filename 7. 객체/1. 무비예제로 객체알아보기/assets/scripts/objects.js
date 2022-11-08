@@ -18,11 +18,17 @@ const renderMovies = (filter = '') => {
 
   filteredMovies.forEach(movie => {
     const movieEl = document.createElement('li');
-    let text = movie.info.title + ' - ';
+    // 객체 구조 분해 - movie에 있는 info안에 있는 모든 프로퍼티를 빼냄
+    // 따라서 기존에 movie.info로 접근을 했던걸 info 만으로도 접근 가능
+    const { info, ...otherProps } = movie;
+    console.log(otherProps);
+    // const { title: movieTitle } = info;
+    // const { getFormattedTitle } = movie;
+    let text = movie.getFormattedTitle() + ' - ';
     // 객체의 key,value 를 다루는 반복문
-    for (const key in movie.info) {
+    for (const key in info) {
       if (key !== 'title') {
-        text = text + `${key}: ${movie.info[key]}`;
+        text = text + `${key}: ${info[key]}`;
       }
     }
     movieEl.textContent = text;
@@ -46,7 +52,10 @@ const addMovieHandler = () => {
       [extraName]: extraValue,
     },
     // 임시 id
-    id: Math.random(),
+    id: Math.random().toString(),
+    getFormattedTitle() {
+      return this.info.title.toUpperCase();
+    },
   };
 
   movies.push(newMovie);
