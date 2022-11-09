@@ -34,7 +34,7 @@ const renderMovies = (filter = '') => {
     // let text = movie.getFormattedTitle.apply(movie, []) + ' - ';
     // 객체의 key,value 를 다루는 반복문
     for (const key in info) {
-      if (key !== 'title') {
+      if (key !== 'title' && key !== '_title') {
         text = text + `${key}: ${info[key]}`;
       }
     }
@@ -55,7 +55,16 @@ const addMovieHandler = () => {
   const newMovie = {
     // title: title // 키와 벨류값이 같은 경우 아래와 같이 표기가능
     info: {
-      title,
+      set title(val) {
+        if (val.trim() === '') {
+          this._title = 'DEFAULT';
+          return;
+        }
+        this._title = val;
+      },
+      get title() {
+        return this._title.toUpperCase();
+      },
       [extraName]: extraValue,
     },
     // 임시 id
@@ -65,11 +74,15 @@ const addMovieHandler = () => {
     },
   };
 
+  newMovie.info.title = title;
+  console.log(newMovie.info.title);
+
   movies.push(newMovie);
   renderMovies();
 };
 
-const searchMovieHandler = function () {
+// arrow function 에 this는 어느 것에도 바인딩 되지 않는다.
+const searchMovieHandler = () => {
   console.log(this);
   const filterTerm = document.getElementById('filter-title').value;
   renderMovies(filterTerm);
