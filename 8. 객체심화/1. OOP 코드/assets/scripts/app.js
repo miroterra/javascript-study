@@ -15,6 +15,12 @@ class Product {
 
 class ShoppingCart {
   items = [];
+
+  addProduct(product) {
+    this.items.push(product);
+    this.render();
+  }
+
   render() {
     const cartEl = document.createElement('section');
     cartEl.innerHTML`
