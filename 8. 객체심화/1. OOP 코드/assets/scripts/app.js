@@ -24,7 +24,11 @@ class ElementAttribut {
 class Component {
   constructor(renderHookId) {
     this.hookId = renderHookId;
+    this.render();
   }
+
+  render() {}
+
   createRootElement(tag, cssClasses, attributes) {
     const rootElement = document.createElement(tag);
     if (cssClasses) {
@@ -108,33 +112,37 @@ class ProductList extends Component {
     new Product('A Pillow', '', 'A soft pillow', 19.99),
     new Product('A Carpet', '', 'A carpet which you might like - or not', 89.99),
   ];
+
   constructor(renderHookId) {
     super(renderHookId);
   }
+
   render() {
     this.createRootElement('ul', 'product-list', [new ElementAttribute('id', 'prod-list')]);
     prodList.className = 'product-list';
     for (const prod of this.products) {
-      const productItem = new ProductItem(prod, 'prod-list');
-      productItem.render();
+      new ProductItem(prod, 'prod-list');
     }
   }
 }
 
-class Shop {
+class Shop extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
     this.cart = new ShoppingCart('app');
-    this.cart.render();
-    const productList = new ProductList('app');
-    productList.render();
+    new ProductList('app');
   }
 }
 
 // 정적 메서드를 쓰기 좋음
 class App {
+  static cart;
+
   static init() {
     const shop = new Shop();
-    shop.render();
     this.cart = shop.cart;
   }
 
