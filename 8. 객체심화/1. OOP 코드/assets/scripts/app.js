@@ -13,7 +13,7 @@ class Product {
   }
 }
 
-class ElementAttribut {
+class ElementAttribute {
   constructor(attrName, attrValue) {
     this.name = attrName;
     this.value = attrValue;
@@ -22,9 +22,11 @@ class ElementAttribut {
 
 // 상속 클래스
 class Component {
-  constructor(renderHookId) {
+  constructor(renderHookId, shouldRender = true) {
     this.hookId = renderHookId;
-    this.render();
+    if (shouldRender) {
+      this.render();
+    }
   }
 
   render() {}
@@ -59,7 +61,12 @@ class ShoppingCart extends Component {
   }
 
   constructor(renderHookId) {
-    super(renderHookId);
+    super(renderHookId, false);
+    this.orderProducts = () => {
+      console.log('Ordering...');
+      console.log(this.items);
+    };
+    this.render();
   }
 
   addProuct(product) {
@@ -70,18 +77,22 @@ class ShoppingCart extends Component {
 
   render() {
     const cartEl = this.createRootElement('section', 'cart');
-    cartEl.innerHTML`
+    cartEl.innerHTML = `
     <h2>Total: \$${0}</h2>
     <button>Order Now!</button>
     `;
+    const orderButton = cartEl.querySelector('button');
+    // orderButton.addEventListener('click', () => this.orderProducts());
+    orderButton.addEventListener('click', this.orderProducts);
     this.totalOutput = cartEl.querySelector('h2');
   }
 }
 
 class ProductItem extends Component {
-  constructor(product, rednerHookId) {
-    super(renderHookId);
+  constructor(product, renderHookId) {
+    super(renderHookId, false);
     this.product = product;
+    this.render();
   }
 
   addToCart() {
@@ -108,20 +119,31 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-  products = [
-    new Product('A Pillow', '', 'A soft pillow', 19.99),
-    new Product('A Carpet', '', 'A carpet which you might like - or not', 89.99),
-  ];
+  products = [];
 
   constructor(renderHookId) {
     super(renderHookId);
+    this.fetchProducts();
+  }
+
+  fetchProducts() {
+    this.products = [
+      new Product('A Pillow', '', 'A soft pillow', 19.99),
+      new Product('A Carpet', '', 'A carpet which you might like - or not', 89.99),
+    ];
+    this.renderProduct();
+  }
+
+  renderProduct() {
+    for (const prod of this.products) {
+      new ProductItem(prod, 'prod-list');
+    }
   }
 
   render() {
     this.createRootElement('ul', 'product-list', [new ElementAttribute('id', 'prod-list')]);
-    prodList.className = 'product-list';
-    for (const prod of this.products) {
-      new ProductItem(prod, 'prod-list');
+    if (this.products && this.products.length > 0) {
+      this.rednerProducts();
     }
   }
 }
