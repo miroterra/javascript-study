@@ -46,7 +46,7 @@ div.addEventListener('mouseenter', event => {
   console.log(event);
 });
 
-button.addEventListener('mouseenter', event => {
+button.addEventListener('click', event => {
   event.stopPropagation();
   console.log('CLICKED BUTTON');
   console.log(event);
@@ -65,4 +65,6 @@ list.addEventListener('click', event => {
   // console.log(event.currentTarget);
   // event.target.classList.toggle('highlight');
   event.target.closest('li').classList.toggle('highlight');
+  // form.submit();
+  button.click();
 });
