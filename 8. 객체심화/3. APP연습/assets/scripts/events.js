@@ -4,7 +4,7 @@ const button = document.querySelector('button');
 
 // };
 
-const buttonClickHandler = (event) => {
+const buttonClickHandler = event => {
   // event.target.disabled = true;
   console.log(event);
 };
@@ -34,14 +34,14 @@ const boundFn = buttonClickHandler.bind(this);
 
 const form = document.querySelector('form');
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', event => {
   event.preventDefault();
   console.log(event);
 });
 
 const div = document.querySelector('div');
 
-div.addEventListener('mouseenter', (event) => {
+div.addEventListener('mouseenter', event => {
   console.log('CLICKED DIV');
   console.log(event);
 });
